@@ -1,30 +1,34 @@
 <script>
+	// shoelace: import assets and components and register them
+	import '@shoelace-style/shoelace/dist/shoelace/shoelace.css';
+	import { defineCustomElements, setAssetPath } from '@shoelace-style/shoelace/dist/custom-elements';
+
+	setAssetPath(document.currentScript.src);
+	defineCustomElements();
+	// end shoelace
+
 	export let name;
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<p>Visit the <sl-button type="primary" href="https://svelte.dev/tutorial">Svelte tutorial</sl-button> to learn how to build Svelte apps.</p>
+	<sl-rating></sl-rating>
+	<br>
+	<sl-color-picker inline></sl-color-picker>
+	<br>
+	<sl-dropdown placement="top-start">
+		<sl-button slot="trigger" caret>Edit</sl-button>
+		<sl-menu>
+			<sl-menu-item>Cut</sl-menu-item>
+			<sl-menu-item>Copy</sl-menu-item>
+			<sl-menu-item>Paste</sl-menu-item>
+			<sl-menu-divider></sl-menu-divider>
+			<sl-menu-item>Find</sl-menu-item>
+			<sl-menu-item>Replace</sl-menu-item>
+		</sl-menu>
+	</sl-dropdown>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>

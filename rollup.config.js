@@ -3,6 +3,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import copy from 'rollup-plugin-copy';
+import postcss from 'rollup-plugin-postcss';
+import path from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -56,6 +59,19 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+		// shoelace plugins: postcss, copy
+		postcss({
+			extensions: ['.css']
+		}),
+		copy({
+			targets: [
+				{
+					src: path.resolve(__dirname, 'node_modules/@shoelace-style/shoelace/dist/shoelace/icons'),
+					dest: path.resolve(__dirname, 'dist')
+				}
+			]
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
